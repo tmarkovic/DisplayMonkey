@@ -89,7 +89,7 @@ namespace DisplayMonkey
 		protected void Register_Click(object sender, EventArgs e)
 		{
 			if (textName.Text != "" &&
-#if !DEBUG
+#if !DEBUG	//TODO: cookies
 				labelHost.Text != "::1" &&
 #endif
                 listCanvas.SelectedIndex >= 0 && 

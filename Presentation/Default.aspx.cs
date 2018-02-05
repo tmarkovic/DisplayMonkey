@@ -67,7 +67,7 @@ namespace DisplayMonkey
 					{
 						string url = string.Format("getCanvas.aspx?display={0}", display.DisplayId);
 
-#if !DEBUG
+#if !DEBUG //TODO: cookies
 						if (theHost != "::1" && display.Host == theHost && display.CanvasId > 0)
 #else
 						if (display.Host == theHost && display.CanvasId > 0)

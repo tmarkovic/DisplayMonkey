@@ -165,7 +165,7 @@ namespace DisplayMonkey
 		public bool Register()
 		{
 			if (Host == "" || Name == "" || CanvasId == 0)
-				return false;
+				return false;	//TODO: cookies
 
             using (SqlCommand cmd = new SqlCommand()
             {
