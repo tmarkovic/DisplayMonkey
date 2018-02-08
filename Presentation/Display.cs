@@ -15,6 +15,7 @@ using System.Web;
 using System.Data;
 using System.Data.SqlClient;
 using System.Threading.Tasks;
+using DisplayMonkey.Models;
 
 namespace DisplayMonkey
 {
@@ -76,6 +77,7 @@ namespace DisplayMonkey
         public int PollInterval { get; set; }   // RC13
         public int ErrorLength { get; set; }    // RC13
         public Nullable<TimeSpan> RecycleTime { get; set; }    // RC15
+        public DisplayAutoLoadModes AutoLoadMode { get; set; }  // 1.6.0
 
         public Display()
 		{
@@ -126,7 +128,7 @@ namespace DisplayMonkey
             ReadyTimeout = r.IntOrZero("ReadyTimeout");
             PollInterval = r.IntOrZero("PollInterval");
             ErrorLength = r.IntOrZero("ErrorLength");
-            
+
             Name = r.StringOrBlank("Name").Trim();
 			if (Name == "")
 				Name = string.Format("Display {0}", DisplayId);
@@ -135,6 +137,30 @@ namespace DisplayMonkey
             {
                 RecycleTime = (TimeSpan)r["RecycleTime"];
             }
+
+            AutoLoadMode = (DisplayId == 0) ? _getDefaultAutoLoadMode() :    // 1.6.0
+                (DisplayAutoLoadModes)r.IntOrZero("AutoLoadMode")
+                ;
+        }
+
+        private DisplayAutoLoadModes _getDefaultAutoLoadMode()
+        {
+            DisplayAutoLoadModes mode = DisplayAutoLoadModes.DisplayAutoLoadMode_IP;
+
+            using (SqlCommand cmd = new SqlCommand()
+            {
+                CommandType = CommandType.Text,
+                CommandText = "SELECT TOP 1 [Value] FROM Settings WHERE [Key]='AE1B2F10-9EC3-4429-97B5-C12D64575C41'"
+            })
+            {
+                cmd.ExecuteReaderExt(dr =>
+                {
+                    mode = (DisplayAutoLoadModes)dr.IntOrZero("Value");
+                    return false;
+                });
+            }
+
+            return mode;
         }
 	
 		public static List<Display> List

@@ -33,7 +33,7 @@ namespace DisplayMonkey
 					Canvas canvas = Canvas.InitFromDisplay(displayId);
 
 					HttpContext.Current.Response.Cookies["DisplayMonkey"]["DisplayID"] = displayId.ToString();
-					HttpContext.Current.Response.Cookies["DisplayMonkey"].Expires = DateTime.MaxValue;
+					HttpContext.Current.Response.Cookies["DisplayMonkey"].Expires = new DateTime(2038, 1, 1);
 
 					// assemble page
 					this.lTitle.Text = canvas.Name;

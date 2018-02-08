@@ -41,6 +41,12 @@ namespace DisplayMonkey.Models
             {
                 this.PollInterval = pollInterval.IntValuePositive;
             }
+
+            Setting autoLoadMode = Setting.GetSetting(_db, Setting.Keys.DefaultDisplayAutoLoadMode);
+            if (autoLoadMode != null)
+            {
+                this.AutoLoadMode = (DisplayAutoLoadModes)autoLoadMode.IntValuePositive;
+            }
         }
 
         internal class Annotations
@@ -120,6 +126,11 @@ namespace DisplayMonkey.Models
                 Display(ResourceType = typeof(Resources), Name = "RecycleTime"),
             ]
             public Nullable<System.TimeSpan> RecycleTime { get; set; }
+
+            [
+                Display(ResourceType = typeof(Resources), Name = "AutoLoadMode"),
+            ]
+            public DisplayAutoLoadModes AutoLoadMode { get; set; }
         }
 
         [

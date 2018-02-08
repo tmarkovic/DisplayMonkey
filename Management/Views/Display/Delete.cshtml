@@ -30,6 +30,15 @@
     </div>
 
     <div class="divRow">
+        <div class="display-label">
+            @Html.DisplayNameFor(model => model.AutoLoadMode)
+        </div>
+        <div class="display-field">
+            @Model.AutoLoadMode.Translate()
+        </div>
+    </div>
+
+    <div class="divRow">
     <div class="display-label">
          @Html.DisplayNameFor(model => model.Canvas)
     </div>

@@ -72,6 +72,7 @@
           <Property Name="ErrorLength" Type="int" Nullable="false" />
           <Property Name="NoCursor" Type="bit" Nullable="false" />
           <Property Name="RecycleTime" Type="time" Precision="7" />
+          <Property Name="AutoLoadMode" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="ExchangeAccount">
           <Key>
@@ -942,6 +943,7 @@
           <Property Type="Int32" Name="ErrorLength" Nullable="false" />
           <Property Type="Boolean" Name="NoCursor" Nullable="false" />
           <Property Type="Time" Name="RecycleTime" Precision="7" />
+          <Property Name="AutoLoadMode" Type="DisplayMonkey.Model.DisplayAutoLoadModes" Nullable="false" />
         </EntityType>
         <EntityType Name="Frame">
           <Key>
@@ -1376,6 +1378,10 @@
           <Member Name="RsaContainer" Value="0" />
           <Member Name="Aes" Value="1" />
         </EnumType>
+        <EnumType Name="DisplayAutoLoadModes">
+          <Member Name="DisplayAutoLoadMode_IP" Value="0" />
+          <Member Name="DisplayAutoLoadMode_Cookie" Value="1" />
+        </EnumType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -1409,6 +1415,7 @@
           <EntitySetMapping Name="Displays">
             <EntityTypeMapping TypeName="DisplayMonkey.Model.Display">
               <MappingFragment StoreEntitySet="Display">
+                <ScalarProperty Name="AutoLoadMode" ColumnName="AutoLoadMode" />
                 <ScalarProperty Name="RecycleTime" ColumnName="RecycleTime" />
                 <ScalarProperty Name="NoCursor" ColumnName="NoCursor" />
                 <ScalarProperty Name="ErrorLength" ColumnName="ErrorLength" />

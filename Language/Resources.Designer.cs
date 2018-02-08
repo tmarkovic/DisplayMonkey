@@ -19,7 +19,7 @@ namespace DisplayMonkey.Language {
     // class via a tool like ResGen or Visual Studio.
     // To add or remove a member, edit your .ResX file then rerun ResGen
     // with the /str option, or rebuild your VS project.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "4.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Resources {
@@ -282,6 +282,15 @@ namespace DisplayMonkey.Language {
         public static string Auto {
             get {
                 return ResourceManager.GetString("Auto", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto assign method.
+        /// </summary>
+        public static string AutoLoadMode {
+            get {
+                return ResourceManager.GetString("AutoLoadMode", resourceCulture);
             }
         }
         
@@ -1437,6 +1446,24 @@ namespace DisplayMonkey.Language {
         public static string Display {
             get {
                 return ResourceManager.GetString("Display", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tracking cookie.
+        /// </summary>
+        public static string DisplayAutoLoadMode_Cookie {
+            get {
+                return ResourceManager.GetString("DisplayAutoLoadMode_Cookie", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Static IP address.
+        /// </summary>
+        public static string DisplayAutoLoadMode_IP {
+            get {
+                return ResourceManager.GetString("DisplayAutoLoadMode_IP", resourceCulture);
             }
         }
         
@@ -3661,6 +3688,24 @@ namespace DisplayMonkey.Language {
         public static string Settings_DefaultCacheIntervalWeather {
             get {
                 return ResourceManager.GetString("Settings_DefaultCacheIntervalWeather", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default auto assign method.
+        /// </summary>
+        public static string Settings_DefaultDisplayAutoLoadMode {
+            get {
+                return ResourceManager.GetString("Settings_DefaultDisplayAutoLoadMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Default method for automatic display assignment. Use &quot;0&quot; to recognize displays by IP address. Use &quot;1&quot; to recognize displays by tracking cookie..
+        /// </summary>
+        public static string Settings_DefaultDisplayAutoLoadMode_Descr {
+            get {
+                return ResourceManager.GetString("Settings_DefaultDisplayAutoLoadMode_Descr", resourceCulture);
             }
         }
         

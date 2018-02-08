@@ -109,7 +109,7 @@ namespace DisplayMonkey
                     display.Register();
 
 					Response.Cookies["DisplayMonkey"]["DisplayID"] = display.DisplayId.ToString();
-					Response.Cookies["DisplayMonkey"].Expires = DateTime.Now.AddDays(365);
+					Response.Cookies["DisplayMonkey"].Expires = new DateTime(2038, 1, 1);
 
 					HttpContext.Current.Response.Redirect("default.aspx");
                 }
