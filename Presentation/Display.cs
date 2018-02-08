@@ -138,29 +138,32 @@ namespace DisplayMonkey
                 RecycleTime = (TimeSpan)r["RecycleTime"];
             }
 
-            AutoLoadMode = (DisplayId == 0) ? _getDefaultAutoLoadMode() :    // 1.6.0
+            AutoLoadMode = (DisplayId == 0) ? DefaultAutoLoadMode :    // 1.6.0
                 (DisplayAutoLoadModes)r.IntOrZero("AutoLoadMode")
                 ;
         }
 
-        private DisplayAutoLoadModes _getDefaultAutoLoadMode()
+        public static DisplayAutoLoadModes DefaultAutoLoadMode         // 1.6.0
         {
-            DisplayAutoLoadModes mode = DisplayAutoLoadModes.DisplayAutoLoadMode_IP;
+            get
+            {
+                DisplayAutoLoadModes mode = DisplayAutoLoadModes.DisplayAutoLoadMode_IP;
 
-            using (SqlCommand cmd = new SqlCommand()
-            {
-                CommandType = CommandType.Text,
-                CommandText = "SELECT TOP 1 [Value] FROM Settings WHERE [Key]='AE1B2F10-9EC3-4429-97B5-C12D64575C41'"
-            })
-            {
-                cmd.ExecuteReaderExt(dr =>
+                using (SqlCommand cmd = new SqlCommand()
                 {
-                    mode = (DisplayAutoLoadModes)dr.IntOrZero("Value");
-                    return false;
-                });
-            }
+                    CommandType = CommandType.Text,
+                    CommandText = "SELECT TOP 1 [Value] FROM Settings WHERE [Key]='AE1B2F10-9EC3-4429-97B5-C12D64575C41'"
+                })
+                {
+                    cmd.ExecuteReaderExt(dr =>
+                    {
+                        mode = (DisplayAutoLoadModes)dr.IntOrZero("Value");
+                        return false;
+                    });
+                }
 
-            return mode;
+                return mode;
+            }
         }
 	
 		public static List<Display> List
