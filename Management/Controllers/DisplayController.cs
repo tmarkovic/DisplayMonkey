@@ -34,11 +34,6 @@ namespace DisplayMonkey.Controllers
             ViewBag.Canvases = new SelectList(list, "CanvasId", "Name", selected);
         }
 
-        private void FillAutoLoadModesSelectList(DisplayAutoLoadModes? selected = null)
-        {
-            ViewBag.AutoLoadModes = selected.TranslatedSelectList();
-        }
-
         private void FillLocationSelectList(object selected = null)
         {
             var list = db.Locations
@@ -149,7 +144,6 @@ namespace DisplayMonkey.Controllers
 
             FillCanvasSelectList(display.CanvasId);
             FillLocationSelectList(display.LocationId);
-            FillAutoLoadModesSelectList(display.AutoLoadMode);
 
             return View(display);
         }
@@ -171,7 +165,6 @@ namespace DisplayMonkey.Controllers
 
             FillCanvasSelectList(display.CanvasId);
             FillLocationSelectList(display.LocationId);
-            FillAutoLoadModesSelectList(display.AutoLoadMode);
 
             return View(display);
         }
@@ -189,7 +182,6 @@ namespace DisplayMonkey.Controllers
 
             FillCanvasSelectList(display.CanvasId);
             FillLocationSelectList(display.LocationId);
-            FillAutoLoadModesSelectList(display.AutoLoadMode);
 
             return View(display);
         }
@@ -211,7 +203,6 @@ namespace DisplayMonkey.Controllers
 
             FillCanvasSelectList(display.CanvasId);
             FillLocationSelectList(display.LocationId);
-            FillAutoLoadModesSelectList(display.AutoLoadMode);
 
             return View(display);
         }

@@ -26,7 +26,6 @@ namespace DisplayMonkey.Models
         public int ErrorLength { get; set; }
         public bool NoCursor { get; set; }
         public Nullable<System.TimeSpan> RecycleTime { get; set; }
-        public DisplayAutoLoadModes AutoLoadMode { get; set; }
     
         public virtual Canvas Canvas { get; set; }
         public virtual Location Location { get; set; }

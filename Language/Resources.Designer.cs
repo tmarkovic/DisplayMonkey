@@ -286,15 +286,6 @@ namespace DisplayMonkey.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Auto assign method.
-        /// </summary>
-        public static string AutoLoadMode {
-            get {
-                return ResourceManager.GetString("AutoLoadMode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Auto-loop.
         /// </summary>
         public static string AutoLoop {
@@ -2350,6 +2341,15 @@ namespace DisplayMonkey.Language {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Location is required.
+        /// </summary>
+        public static string LocationRequired {
+            get {
+                return ResourceManager.GetString("LocationRequired", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locations.
         /// </summary>
         public static string Locations {
@@ -3692,24 +3692,6 @@ namespace DisplayMonkey.Language {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Default auto assign method.
-        /// </summary>
-        public static string Settings_DefaultDisplayAutoLoadMode {
-            get {
-                return ResourceManager.GetString("Settings_DefaultDisplayAutoLoadMode", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Default method for automatic display assignment. Use &quot;0&quot; to recognize displays by IP address. Use &quot;1&quot; to recognize displays by tracking cookie..
-        /// </summary>
-        public static string Settings_DefaultDisplayAutoLoadMode_Descr {
-            get {
-                return ResourceManager.GetString("Settings_DefaultDisplayAutoLoadMode_Descr", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Default length for display errors, sec.
         /// </summary>
         public static string Settings_DefaultDisplayErrorLength {
@@ -3886,6 +3868,24 @@ namespace DisplayMonkey.Language {
         public static string Settings_DefaultTemplateYouTube {
             get {
                 return ResourceManager.GetString("Settings_DefaultTemplateYouTube", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Auto resolution mode.
+        /// </summary>
+        public static string Settings_DisplayAutoLoadMode {
+            get {
+                return ResourceManager.GetString("Settings_DisplayAutoLoadMode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Automatic display resolution mode. Use &quot;0&quot; to recognize displays by host name or IP address. Use &quot;1&quot; to recognize displays by tracking cookie..
+        /// </summary>
+        public static string Settings_DisplayAutoLoadMode_Descr {
+            get {
+                return ResourceManager.GetString("Settings_DisplayAutoLoadMode_Descr", resourceCulture);
             }
         }
         

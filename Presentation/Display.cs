@@ -77,7 +77,6 @@ namespace DisplayMonkey
         public int PollInterval { get; set; }   // RC13
         public int ErrorLength { get; set; }    // RC13
         public Nullable<TimeSpan> RecycleTime { get; set; }    // RC15
-        public DisplayAutoLoadModes AutoLoadMode { get; set; }  // 1.6.0
 
         public Display()
 		{
@@ -137,13 +136,9 @@ namespace DisplayMonkey
             {
                 RecycleTime = (TimeSpan)r["RecycleTime"];
             }
-
-            AutoLoadMode = (DisplayId == 0) ? DefaultAutoLoadMode :    // 1.6.0
-                (DisplayAutoLoadModes)r.IntOrZero("AutoLoadMode")
-                ;
         }
 
-        public static DisplayAutoLoadModes DefaultAutoLoadMode         // 1.6.0
+        public static DisplayAutoLoadModes AutoLoadMode         // 1.6.0
         {
             get
             {
@@ -157,12 +152,21 @@ namespace DisplayMonkey
                 {
                     cmd.ExecuteReaderExt(dr =>
                     {
-                        mode = (DisplayAutoLoadModes)dr.IntOrZero("Value");
+                        byte[] v = dr.BytesOrNull("Value");
+                        mode = (DisplayAutoLoadModes)(v == null ? 0 : BitConverter.ToInt32(v.Reverse().ToArray(), 0));
                         return false;
                     });
                 }
 
                 return mode;
+            }
+        }
+
+        public string Url                                       // 1.6.0
+        {
+            get
+            {
+                return string.Format("getCanvas.aspx?display={0}", DisplayId);
             }
         }
 	
@@ -193,8 +197,8 @@ namespace DisplayMonkey
 
 		public bool Register()
 		{
-			if (Host == "" || Name == "" || CanvasId == 0)
-				return false;	//TODO: cookies
+			if (Name == "" || CanvasId == 0 || LocationId == 0)
+				return false;
 
             using (SqlCommand cmd = new SqlCommand()
             {
@@ -203,18 +207,18 @@ namespace DisplayMonkey
             })
             {
 				cmd.CommandType = CommandType.StoredProcedure;
-				cmd.Parameters.Add("@name", SqlDbType.NVarChar, 100).Value = Name;
-				cmd.Parameters.Add("@host", SqlDbType.VarChar, 100).Value = Host;
-				cmd.Parameters.Add("@canvasId", SqlDbType.Int).Value = CanvasId;
-				cmd.Parameters.Add("@locationId", SqlDbType.Int).Value = LocationId;
-				cmd.Parameters.Add("@displayId", SqlDbType.Int).Value = DisplayId;
-				cmd.Parameters.Add("@displayIdReturn", SqlDbType.Int).Direction = ParameterDirection.Output;
+				cmd.Parameters.AddWithValue("@name", Name);
+				cmd.Parameters.AddWithValue("@host", Host ?? "");
+				cmd.Parameters.AddWithValue("@canvasId", CanvasId);
+				cmd.Parameters.AddWithValue("@locationId", LocationId);
+				cmd.Parameters.Add("@displayId", SqlDbType.Int).Direction = ParameterDirection.Output;
 
                 cmd.ExecuteNonQueryExt();
 
 				//DataAccess.ExecuteNonQuery(cmd);
-				DisplayId = cmd.Parameters["@displayIdReturn"].IntOrZero();
+				DisplayId = cmd.Parameters["@displayId"].IntOrZero();
 			}
+
 			return true;
 		}
     }
